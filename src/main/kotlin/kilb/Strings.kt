@@ -7,11 +7,11 @@ import helpers.readRegisterString
 import helpers.toLong
 import helpers.writeClosestString
 import helpers.writeStringSpecInMemory
-import internals.Vm
+import kernel.process.KProcess
 
-class Strings(val vm: Vm) {
-	val registers = vm.registers
-	val helpers = vm.helpers
+class Strings(val kp: KProcess) {
+	val registers = kp.vm.registers
+	val helpers = kp.vm.helpers
 
 	fun strcmp() {
 		registers.write(intelNames[IntelRegisters.ENSF], true.toLong())
@@ -29,7 +29,7 @@ class Strings(val vm: Vm) {
 		val s2: Comparable<String> = helpers.readRegisterString(register = RegisterType.F2)
 		val location = helpers.writeClosestString(string = (s1 + s2))
 //		registers.write(R4, location)
-		vm.stackOperations.internalStack.push(location)
+		kp.vm.stackOperations.internalStack.push(location)
 
 	}
 
@@ -48,10 +48,10 @@ class Strings(val vm: Vm) {
 
 		var index: Long = 0L
 		while (true) {
-			val byte = vm.heap!!.get(registers.read(RegisterType.F1) + index)
+			val byte = kp.vm.heap!!.get(registers.read(RegisterType.F1) + index)
 			if (byte == 0L) break
 			index++
 		}
-		vm.stackOperations.internalStack.push(index)
+		kp.vm.stackOperations.internalStack.push(index)
 	}
 }

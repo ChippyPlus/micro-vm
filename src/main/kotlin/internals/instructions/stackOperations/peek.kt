@@ -11,15 +11,13 @@ import helpers.toLong
  * @param registerType The register containing the value to push.
  * @throws GeneralStackOperationsException If an error occurs during the push operation (e.g. stack overflow).
  */
-fun StackOperations.peek(destination: RegisterType) = try {
+fun StackOperations.peek(destination: RegisterType) {
 	registers.write(
 		intelNames[IntelRegisters.ENSF], true.toLong()
-	) // Its above the next expr because internal stack may throw its own errors
+	) // It's above the next expr because the internal stack may throw its own errors
 
 	registers.write(
 		register = destination, value = internalStack.peek()
 	)
 
-} catch (_: Exception) {
-	errors.GeneralStackOperationsException("Peek")
 }

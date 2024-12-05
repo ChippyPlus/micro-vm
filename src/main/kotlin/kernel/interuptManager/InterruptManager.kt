@@ -21,7 +21,7 @@ class InterruptManager(val vm: Vm) {
 	fun sendSignal(code: Int, process: Long) {
 		val exitCode = getRuntime().exec("kill -$code $process").exitValue()
 		if (exitCode == 1) {
-			vm.errors.SystemCallGeneralException("sendSignal", "Bad PID")
+			vm.errors.systemCallGeneralException("sendSignal", "Bad PID")
 		}
 	}
 
@@ -32,7 +32,7 @@ class InterruptManager(val vm: Vm) {
 			if (it.code.equals(code)) handle(it.signalName, jumpWhere);did = true;return@forEach
 		}
 		if (!did) {
-			vm.errors.SystemCallGeneralException("handleSignals")
+			vm.errors.systemCallGeneralException("handleSignals")
 		}
 
 	}

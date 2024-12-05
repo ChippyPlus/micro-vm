@@ -7,7 +7,7 @@ import data.registers.write
 import environment.reflection.reflection
 import helpers.toLong
 import internals.Vm
-import kernel.KProcess
+import kernel.process.KProcess
 import kernel.systemCalls.calls.*
 import kotlin.system.exitProcess
 
@@ -40,9 +40,9 @@ class SystemCall(val vm: Vm) {
 			7 -> exec(s2)
 			8 -> fork()
 //			9 -> spawn(s2)
-			10 -> share_m(s2, s3, s4)
-			11 -> pause_t(s2)
-			12 -> continue_t(s2)
+			10 -> shareM(s2, s3, s4)
+			11 -> pauseT(s2)
+			12 -> continueT(s2)
 			14 -> time()
 			16 -> getPid()
 			17 -> getUid()
@@ -60,7 +60,7 @@ class SystemCall(val vm: Vm) {
 			34 -> getParentPid()
 
 
-			else -> errors.InvalidSystemCallException(registers.read(callId).toString())
+			else -> errors.invalidSystemCallException(registers.read(callId).toString())
 		}
 	}
 
@@ -70,7 +70,7 @@ class SystemCall(val vm: Vm) {
 		val functionResult = try {
 			function()
 		} catch (_: Exception) {
-			errors.SystemCallGeneralException(message = name)
+			errors.systemCallGeneralException(message = name)
 			exitProcess(29384)
 		}
 

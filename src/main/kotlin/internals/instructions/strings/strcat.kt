@@ -23,6 +23,6 @@ fun Strings.strcat(string1: RegisterType, string2: RegisterType): Any = try {
 
 
 } catch (_: Exception) {
-	errors.GeneralStringException("strcat")
+	errors.generalStringException("strcat")
 
 }

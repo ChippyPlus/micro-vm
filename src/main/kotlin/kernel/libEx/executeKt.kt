@@ -1,15 +1,18 @@
 package kernel.libEx
 
+import internals.Vm
 import kernel.ExecuteLib
+import kernel.process.KProcess
 import kilb.Klib
+import os
+import java.io.File
 
 fun ExecuteLib.executeKt(name: String) {
-	val oldPc = vm.pc
-	val snapshot = vm.snapShotManager.snapShotRegisters()
-	if (!Klib(vm).match(name)) {
-		vm.errors.MissingLibraryException(name) // Kt should be the last resort
+	val newKp = KProcess(Vm(), File("Non-existent"))
+	os.snapShotManager.snapShotRegisters(newKp)
+	if (!Klib(newKp).match(name)) {
+		vm.errors.missingLibraryException(name) // Kt should be the last resort
 	}
 	currentFunction = name
-	vm.snapShotManager.populateSnapShotRegister(snapshot)
-	vm.pc = oldPc
+
 }

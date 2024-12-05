@@ -6,7 +6,7 @@ import engine.execution.InstructData
 import helpers.gatherHelp
 import helpers.toRegisterType
 import internals.Vm
-import kernel.KProcess
+import kernel.process.KProcess
 import kotlin.system.exitProcess
 
 fun parser(kp: KProcess, file: List<String>) {
@@ -83,7 +83,7 @@ fun parserReturn(vm: Vm, file: List<String>): List<InstructData> {
 								line[1].toRegisterType(), try {
 									line.joinToString(" ").split("\"")[1]
 								} catch (e: IndexOutOfBoundsException) {
-									vm.errors.InvalidArgumentFormatException(
+									vm.errors.invalidArgumentFormatException(
 										"Any", shouldBe = "String"
 									)
 								}
@@ -115,7 +115,9 @@ fun parserReturn(vm: Vm, file: List<String>): List<InstructData> {
 					}
 
 					// Register Register Register
-					"mod", "add", "sub", "mul", "div", "shl", "shr", "and", "or", "xor", "pow", "xadd", "xsub", "xmul", "xdiv", "xpow" -> {
+					"mod", "add", "sub", "mul", "div", "shl", "shr", "and", "or", "xor", "pow", "xadd", "xsub", "xmul",
+					"xdiv", "xpow",
+						-> {
 						InstructData(
 							name = instruction,
 							arrayOf(line[1].toRegisterType(), line[2].toRegisterType(), line[3].toRegisterType())
@@ -168,7 +170,7 @@ fun parserReturn(vm: Vm, file: List<String>): List<InstructData> {
 					}
 
 					else -> {
-						vm.errors.InvalidInstructionException(instruction)
+						vm.errors.invalidInstructionException(instruction)
 						exitProcess(99) // for kotlin. Ughhhhhh
 					}
 				}
@@ -176,19 +178,19 @@ fun parserReturn(vm: Vm, file: List<String>): List<InstructData> {
 		} catch (missingArgument: IndexOutOfBoundsException) {
 			val missingIndex = missingArgument.message!!.split(" ")[1].toByte() - 1
 			val info = vm.helpers.gatherHelp(instruction).arguments[missingIndex]
-			vm.errors.InvalidArgumentException(info = info)
+			vm.errors.invalidArgumentException(info = info)
 
 
 		} catch (e: NumberFormatException) {
 			try {
 				val x = e.message!!.split(" ")[3].substring(1, e.message!!.split(" ").size - 1).toRegisterType()
 				if (x == null) {
-					vm.errors.InvalidArgumentFormatException(badType = "Any", shouldBe = "Long")
+					vm.errors.invalidArgumentFormatException(badType = "Any", shouldBe = "Long")
 				} else {
-					vm.errors.InvalidArgumentFormatException(badType = "Long", shouldBe = "Register")
+					vm.errors.invalidArgumentFormatException(badType = "Long", shouldBe = "Register")
 				}
 			} catch (_: IllegalStateException) {
-				vm.errors.InvalidArgumentFormatException(
+				vm.errors.invalidArgumentFormatException(
 					badType = "String", shouldBe = "Long"
 				)
 			}
@@ -196,8 +198,7 @@ fun parserReturn(vm: Vm, file: List<String>): List<InstructData> {
 	}
 	vm.pc = 0
 
-//	if (reflection.groupTrackedVmByVm()[vm]!!.file.extension != "lib") {
-	out.add(InstructData("HALT", arrayOf()))
-//	}
+	//	if (reflection.groupTrackedVmByVm()[vm]!!.file.extension != "lib") {
+	out.add(InstructData("HALT", arrayOf())) //	}
 	return out
 }

@@ -18,5 +18,5 @@ fun Memory.store(source: RegisterType, destination: RegisterType) = try {
 	registers.write(intelNames[IntelRegisters.ENSF], true.toLong())
 
 } catch (_: Exception) {
-	errors.GeneralMemoryException("Store")
+	errors.generalMemoryException("Store")
 }

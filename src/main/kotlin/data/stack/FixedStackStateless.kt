@@ -5,7 +5,7 @@ import data.registers.IntelRegisters
 import data.registers.intelNames
 import environment.errorsCatchable.ErrorType
 import helpers.toLong
-import kernel.KProcess
+import kernel.process.KProcess
 
 class FixedStackStateless(kp: KProcess) {
 	private val maxSize = config.stackSize

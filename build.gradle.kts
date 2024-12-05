@@ -46,11 +46,9 @@ repositories {
 	maven { url = uri("https://jogamp.org/deployment/maven") }
 }
 
-dependencies {
-	// future ideas?
+dependencies { // future ideas?
 	implementation("net.java.dev.jna:jna:$jnaVersion")
 	implementation("org.jogamp.jogl:jogl-all-main:$joglVersion")
-	//
 	implementation("com.google.protobuf:protobuf-java-util:4.28.2")   // Deprecated in favour of kotlinx.serialization
 	implementation("com.google.protobuf:protobuf-kotlin:4.28.2")      // Deprecated in favour of kotlinx.serialization
 	testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")

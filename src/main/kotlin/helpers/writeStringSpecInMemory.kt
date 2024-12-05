@@ -13,7 +13,7 @@ fun Helpers.writeStringSpecInMemory(string: String, destinationAddress: Long) {
 
 	for (i in (destinationAddress until (destinationAddress + allocMem))) {
 		if (heap!!.get(i) != 0L) {
-			errors.NotFreeMemoryException(i.toString())
+			errors.notFreeMemoryException(i.toString())
 		}
 	}
 

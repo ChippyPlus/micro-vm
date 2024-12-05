@@ -22,6 +22,6 @@ fun Helpers.findFreeMemory(size: Long): Long {
 		currentAddress++
 	}
 
-	vm.errors.MemoryAllocationException("Could not allocate memory")
+	vm.errors.memoryAllocationException("Could not allocate memory")
 	exitProcess(1)
 }

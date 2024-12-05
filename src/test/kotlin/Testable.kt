@@ -1,27 +1,42 @@
-import java.awt.BorderLayout
-import java.io.PrintStream
-import javax.swing.JFrame
-import javax.swing.JLabel
+import DataType.A
+import DataType.S
 
-fun main() {
-	setupErrorStreamFilter()
-	val frame = JFrame("My Kotlin Swing App")
-	frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-	frame.setSize(300, 200)
-	val label = JLabel("Hello, Kotlin Swing!")
-	frame.add(label, BorderLayout.CENTER)
-	frame.isVisible = true
+enum class DataType {
+	A, S, D, F
+}
+
+class Sm {
+	fun snapshot() {}
+
+	fun refill() {}
+}
+
+
+class Data {
+	private val holders = mutableMapOf<DataType, Byte>()
+
+	init {
+		for (i in DataType.entries) {
+			holders[i] = 0
+		}
+	}
+
+	operator fun set(a: DataType, value: Byte) = run { holders[a] = value }
+	operator fun get(a: DataType) = holders[a]!!
+}
+
+val data = Data()
+val sm = Sm()
+fun runExternal() {
+	data[A] = 2
+	data[S] = 22
 
 }
 
 
-fun setupErrorStreamFilter() {
-	val process = ProcessBuilder(
-		"sh",
-		"-c",
-		"while read line; do if [[ ! \$line =~ IMK[A-Za-z]+ ]]; then echo \"\$line\" >&2; fi ; done"
-	).start()
-
-	// Redirect Java's stderr to the shell process's stdin
-	System.setErr(PrintStream(process.outputStream))
+fun main() {
+	data[A] = 15
+	sm
+	runExternal()
+	println(data[A])
 }

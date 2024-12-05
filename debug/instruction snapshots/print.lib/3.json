@@ -1,5 +1,0 @@
-{
-    "fileName": "print.lib",
-    "pc": 3,
-    "instruction": "syscall S1 S2 S3 S4"
-}

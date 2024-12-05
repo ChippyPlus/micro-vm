@@ -3,6 +3,7 @@
 package kernel
 
 import internals.Vm
+import kernel.process.KProcess
 import java.io.File
 import java.util.*
 import kotlin.system.exitProcess

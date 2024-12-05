@@ -20,6 +20,6 @@ fun ControlFlow.jnz(targetAddress: Long): Any = try {
 
 } catch (_: Exception) {
 	errors.run {
-		this.GeneralControlFlowException(message = "Jnz")
+		this.generalControlFlowException(message = "Jnz")
 	}
 }

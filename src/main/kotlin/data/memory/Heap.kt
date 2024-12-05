@@ -1,6 +1,6 @@
 package data.memory
 
-import kernel.KProcess
+import kernel.process.KProcess
 import os
 import kotlin.system.exitProcess
 
@@ -31,7 +31,7 @@ class Heap(val kp: KProcess) {
 				return start
 			}
 		}
-		kp.vm.errors.MemoryAllocationException(size.toString())
+		kp.vm.errors.memoryAllocationException(size.toString())
 		exitProcess(32)
 	}
 
@@ -44,7 +44,7 @@ class Heap(val kp: KProcess) {
 				m[i.toInt()] = 0L
 			}
 		} else {
-			kp.vm.errors.InvalidMemoryAddressException(address)
+			kp.vm.errors.invalidMemoryAddressException(address)
 		}
 	}
 
@@ -58,12 +58,12 @@ class Heap(val kp: KProcess) {
 			if (offset >= 0 && offset < block.size) {
 				return m[absoluteAddress.toInt()]
 			} else {
-				kp.vm.errors.InvalidOffsetForBlockException(absoluteAddress)
+				kp.vm.errors.invalidOffsetForBlockException(absoluteAddress)
 				exitProcess(203)
 
 			}
 		} else {
-			kp.vm.errors.AccessingUnallocatedMemoryException(absoluteAddress)
+			kp.vm.errors.accessingUnallocatedMemoryException(absoluteAddress)
 			exitProcess(203)
 		}
 
@@ -78,11 +78,11 @@ class Heap(val kp: KProcess) {
 			if (offset >= 0 && offset < block.size) {
 				m[absoluteAddress.toInt()] = value
 			} else {
-				kp.vm.errors.InvalidOffsetForBlockException(absoluteAddress)
+				kp.vm.errors.invalidOffsetForBlockException(absoluteAddress)
 
 			}
 		} else {
-			kp.vm.errors.InvalidMemoryAddressException(absoluteAddress)
+			kp.vm.errors.invalidMemoryAddressException(absoluteAddress)
 
 		}
 

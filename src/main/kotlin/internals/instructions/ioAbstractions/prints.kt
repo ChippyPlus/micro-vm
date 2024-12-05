@@ -13,5 +13,5 @@ fun IoAbstractions.prints(): Unit = try {
 	println(vm.stackOperations.internalStack.peek())
 	registers.write(intelNames[IntelRegisters.ENSF], true.toLong())
 } catch (_: Exception) {
-	errors.GeneralIoAbstractionsException(message = "prints")
+	errors.generalIoAbstractionsException(message = "prints")
 }

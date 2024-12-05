@@ -28,7 +28,7 @@ open class DataTransfer(vm: Vm) {
 				registers.write(intelNames[IntelRegisters.ENSF], false.toLong())
 			}
 		} catch (e: Exception) {
-			errors.GeneralDataTransferException(message = name)
+			errors.generalDataTransferException(message = name)
 		}
 	}
 }

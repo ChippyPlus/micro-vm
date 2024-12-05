@@ -14,6 +14,6 @@ fun Arithmetic.lt(operand1: RegisterType, operand2: RegisterType) = try {
 		intelNames[IntelRegisters.GF], if (!out) true.toLong() else false.toLong()
 	)
 } catch (e: Exception) {
-	errors.run { this@run.GeneralArithmeticException(message = "lt") }
+	errors.run { this@run.generalArithmeticException(message = "lt") }
 }
 

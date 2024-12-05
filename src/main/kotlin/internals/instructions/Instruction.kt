@@ -53,7 +53,8 @@ class Instruction {
 	data class Mov(val source: RegisterType, val destination: RegisterType)
 
 	/**
-	 * Represents an ADD instruction, which adds the values in two registers and stores the result in a destination register.
+	 * Represents an ADD instruction, which adds the values in two registers and stores the result in a destination
+	 * register.
 	 *
 	 * @param operand1 The first operand register.
 	 * @param operand2 The second operand register.
@@ -61,7 +62,8 @@ class Instruction {
 	data class Add(val operand1: RegisterType, val operand2: RegisterType)
 
 	/**
-	 * Represents a SUB instruction, which subtracts the value in one register from the value in another register and stores the result in a destination register.
+	 * Represents a SUB instruction, which subtracts the value in one register from the value in another register and
+	 * stores the result in a destination register.
 	 *
 	 * @param operand1 The first operand register.
 	 * @param operand2 The second operand register.
@@ -69,7 +71,8 @@ class Instruction {
 	data class Sub(val operand1: RegisterType, val operand2: RegisterType)
 
 	/**
-	 * Represents a MUL instruction, which multiplies the values in two registers and stores the result in a destination register.
+	 * Represents a MUL instruction, which multiplies the values in two registers and stores the result in a destination
+	 * register.
 	 *
 	 * @param operand1 The first operand register.
 	 * @param operand2 The second operand register.
@@ -77,7 +80,8 @@ class Instruction {
 	data class Mul(val operand1: RegisterType, val operand2: RegisterType)
 
 	/**
-	 * Represents a DIV instruction, which divides the value in one register by the value in another register and stores the result in a destination register.
+	 * Represents a DIV instruction, which divides the value in one register by the value in another register and stores
+	 * the result in a destination register.
 	 *
 	 * @param operand1 The dividend register.
 	 * @param operand2 The divisor register.
@@ -92,7 +96,8 @@ class Instruction {
 	data class Jmp(val targetAddress: Int)
 
 	/**
-	 * Represents a JZ instruction, which jumps to a specified instruction address if the value in a test register is zero.
+	 * Represents a JZ instruction, which jumps to a specified instruction address if the value in a test register is
+	 * zero.
 	 *
 	 * @param targetAddress The address of the instruction to jump to.
 	 * @param testRegister The register to test for zero.
@@ -100,7 +105,8 @@ class Instruction {
 	data class Jz(val targetAddress: Int, val testRegister: RegisterType)
 
 	/**
-	 * Represents a JNZ instruction, which jumps to a specified instruction address if the value in a test register is not zero.
+	 * Represents a JNZ instruction, which jumps to a specified instruction address if the value in a test register is
+	 * not zero.
 	 *
 	 * @param targetAddress The address of the instruction to jump to.
 	 * @param testRegister The register to test for non-zero.
@@ -162,7 +168,8 @@ class Instruction {
 	data class Store(val source: RegisterType, val memoryAddress: RegisterType)
 
 	/**
-	 * Represents an AND instruction, which performs a bitwise AND operation between two registers and stores the result in a destination register.
+	 * Represents an AND instruction, which performs a bitwise AND operation between two registers and stores the result
+	 * in a destination register.
 	 *
 	 * @param operand1 The first operand register.
 	 * @param operand2 The second operand register.
@@ -170,7 +177,8 @@ class Instruction {
 	data class And(val operand1: RegisterType, val operand2: RegisterType)
 
 	/**
-	 * Represents an OR instruction, which performs a bitwise OR operation between two registers and stores the result in a destination register.
+	 * Represents an OR instruction, which performs a bitwise OR operation between two registers and stores the result
+	 * in a destination register.
 	 *
 	 * @param operand1 The first operand register.
 	 * @param operand2 The second operand register.
@@ -178,7 +186,8 @@ class Instruction {
 	data class Or(val operand1: RegisterType, val operand2: RegisterType)
 
 	/**
-	 * Represents an XOR instruction, which performs a bitwise XOR operation between two registers and stores the result in a destination register.
+	 * Represents an XOR instruction, which performs a bitwise XOR operation between two registers and stores the result
+	 * in a destination register.
 	 *
 	 * @param operand1 The first operand register.
 	 * @param operand2 The second operand register.
@@ -186,14 +195,15 @@ class Instruction {
 	data class Xor(val operand1: RegisterType, val operand2: RegisterType)
 
 	/**
-	 * Represents a NOT instruction, which performs a bitwise NOT operation on a register and stores the result in the same register.
+	 * Represents a NOT instruction, which performs a bitwise NOT operation on a register and stores the result in the
+	 * same register.
 	 *
 	 * @param operand The operand register.
 	 */
 	data class Not(val operand: RegisterType)
 
 	/**
-	 * Represents a SHL instruction, which shifts the bits of a register to the left by a specified amount.
+	 * Represents an SHL instruction, which shifts the bits of a register to the left by a specified amount.
 	 *
 	 * @param operand The operand register.
 	 * @param shiftAmount The amount to shift the bits.
@@ -209,7 +219,7 @@ class Instruction {
 	data class Shr(val operand: RegisterType, val shiftAmount: RegisterType)
 
 	/**
-	 * Represents a LIT instruction, which loads a literal value into a specified register.
+	 * Represents an LIT instruction, which loads a literal value into a specified register.
 	 *
 	 * @param destination The destination register.
 	 * @param value The literal value to load.

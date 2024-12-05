@@ -22,5 +22,5 @@ fun Arithmetic.eq(operand1: RegisterType, operand2: RegisterType) = try {
 	registers.write(intelNames[IntelRegisters.ZF], out.toLong())
 
 } catch (e: Exception) {
-	errors.GeneralArithmeticException(message = "eq")
+	errors.generalArithmeticException(message = "eq")
 }

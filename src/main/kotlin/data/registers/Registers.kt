@@ -1,11 +1,8 @@
 package data.registers
 
-import internals.Vm
-import kotlin.system.exitProcess
-
 data class FDRegister(val isDouble: Boolean, val value: Long?)
 
-class Registers(val vm: Vm) {
+class Registers {
 	val registers = mutableMapOf<RegisterType, RegisterData>()
 
 	init {
@@ -37,13 +34,8 @@ class Registers(val vm: Vm) {
 	}
 
 
-	fun read(register: RegisterType): Long = try {
-		val value = registers[register]!!.read()
-		value!!
-
-	} catch (_: NullPointerException) {
-		vm.errors.NullRegisterException(register)
-		exitProcess(1)
+	fun read(register: RegisterType): Long {
+		return registers[register]!!.read()!!
 	}
 
 	fun write(register: RegisterType, value: Long) {

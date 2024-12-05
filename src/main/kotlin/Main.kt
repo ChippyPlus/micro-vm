@@ -1,8 +1,8 @@
 import engine.parser
 import helpers.Config
 import internals.Vm
-import kernel.KProcess
 import kernel.OS
+import kernel.process.KProcess
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.newSingleThreadContext
@@ -16,11 +16,10 @@ val config = Config(File("./config.json"))
 //val hertz = config.hertz
 val MEMORY_LIMIT = config.memorySize
 val os = OS()
-val init = KProcess(Vm(), File("idk the netherlands?"))
 
 @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
 fun main(args: Array<String>): Unit = runBlocking(newSingleThreadContext("Kotlin's main")) {
-	init.file = File(args[1])
+	val init = KProcess(Vm(), File(args[1]))
 	init.notifyOS()
 	if (args.isEmpty()) {
 		println("Usage: mvm <command> [options]")

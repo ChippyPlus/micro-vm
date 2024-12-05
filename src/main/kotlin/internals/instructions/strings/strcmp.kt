@@ -32,5 +32,5 @@ fun Strings.strcmp(string1: RegisterType, string2: RegisterType) = try {
 
 
 } catch (_: Exception) {
-	errors.GeneralStringException("Strcmp")
+	errors.generalStringException("Strcmp")
 }

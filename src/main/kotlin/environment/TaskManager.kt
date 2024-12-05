@@ -17,9 +17,8 @@ private class TaskManager {
 		taskScope.launch { taskChannel.send(block) }
 		if (!::taskManager.isInitialized) {
 			taskManager = taskScope.launch {
-				for (task in taskChannel) {
-					val taskJob =
-						launch(newSingleThreadContext("Kotlin's slaves \$${activeTasks.size + 1}")) { task() } // Launch each task concurrently
+				for (task in taskChannel) {					// Launch each task concurrently
+					val taskJob = launch(newSingleThreadContext("Kotlin's slaves \$${activeTasks.size + 1}")) { task() }
 					activeTasks.add(taskJob)
 				}
 				activeTasks.joinAll()

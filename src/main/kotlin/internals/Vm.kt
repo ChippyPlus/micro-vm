@@ -2,7 +2,6 @@ package internals
 
 import data.memory.Heap
 import data.registers.RegisterType
-import data.registers.Registers
 import data.registers.read
 import data.vfs.Vfs
 import environment.VMErrors
@@ -19,14 +18,13 @@ import internals.instructions.stackOperations.StackOperations
 import internals.instructions.strings.Strings
 import internals.instructions.xFloats.XFloats
 import kernel.ExecuteLib
-import kernel.SnapShotManager
 import kernel.systemCalls.SystemCall
 import kotlinx.coroutines.runBlocking
+import os
 import kotlin.reflect.KProperty
 
 class Vm {
-	val registers = Registers(this) // NOOOO!
-	val snapShotManager = SnapShotManager(this) // NOOOO!!!
+	var registers = os.registers
 	val errors = VMErrors(this)
 	val helpers = Helpers(this)
 	var libExecute: ExecuteLib? = null
@@ -45,6 +43,8 @@ class Vm {
 	val pcInternal = Pc(vm = this)
 	var pc: Long by pcInternal
 	var libPc = 0L
+
+	@Suppress("unused")
 	val vfs = Vfs() // TODO. We need to bring this back!
 
 
@@ -68,7 +68,7 @@ class Pc(val vm: Vm) {
 
 	operator fun setValue(thisRef: Any?, property: KProperty<*>, value: Long) = runBlocking {
 		if (value < 0) {
-			vm.errors.InvalidPcValueException(value.toString())
+			vm.errors.invalidPcValueException(value.toString())
 		}
 		vm.registers.write(RegisterType.I8, value)
 

@@ -3,11 +3,14 @@ package data.memory
 import MEMORY_LIMIT
 import internals.Vm
 
+@Deprecated("We have moved to using the HEAP", replaceWith = ReplaceWith("data.memory.Heap"))
 class InternalMemory(vm: Vm) {
 	val errors = vm.errors
 	var memory = emptyMap<Long, Long>().toMutableMap()
 
 	var linkedR: LongRange? = null
+
+	@Suppress("DEPRECATION")
 	var linedRef: InternalMemory? = null
 
 	init {
@@ -18,7 +21,7 @@ class InternalMemory(vm: Vm) {
 
 	fun write(address: Long, value: Long) {
 		if (address.toInt() > MEMORY_LIMIT) {
-			errors.InvalidMemoryAddressException(address)
+			errors.invalidMemoryAddressException(address)
 		}
 
 		if (linkedR != null && linedRef != null && address in linkedR!!) {
@@ -30,15 +33,16 @@ class InternalMemory(vm: Vm) {
 
 	fun read(address: Long): Long {
 		if (memory[address] == 0L) {
-			errors.NullAddressException(address)
+			errors.nullAddressException(address)
 		}
 		if (address > MEMORY_LIMIT) {
-			errors.InvalidMemoryAddressException(address)
+			errors.invalidMemoryAddressException(address)
 		}
 		return memory[address]!!
 	}
 
 	@Deprecated("Should implement a new method for memoryV2")
+	@Suppress("DEPRECATION")
 	fun link(ref: InternalMemory, range: LongRange) {
 		linkedR = range
 		linedRef = ref

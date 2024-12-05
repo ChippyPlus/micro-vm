@@ -18,6 +18,6 @@ fun ControlFlow.jz(targetAddress: Long): Any = try {
 	}
 
 } catch (_: Exception) {
-	errors.GeneralControlFlowException(message = "Jz")
+	errors.generalControlFlowException(message = "Jz")
 
 }

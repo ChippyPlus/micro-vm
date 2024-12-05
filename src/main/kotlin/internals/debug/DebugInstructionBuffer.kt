@@ -1,6 +1,6 @@
 package internals.debug
 
-import kernel.KProcess
+import kernel.process.KProcess
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json

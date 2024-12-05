@@ -7,7 +7,7 @@ fun XFloats.ftoi(registerX: RegisterType, register: RegisterType) {
 
 	if (valueLong.isDouble) {
 		if (valueLong.value == null) {
-			vm.errors.NullRegisterException(registerX)
+			vm.errors.nullRegisterException(registerX)
 		}
 		registers.write(register, Double.fromBits(valueLong.value!!).toLong())
 	} else {

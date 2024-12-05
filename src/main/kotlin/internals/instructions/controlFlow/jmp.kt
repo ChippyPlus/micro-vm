@@ -10,5 +10,5 @@ package internals.instructions.controlFlow
 fun ControlFlow.jmp(targetAddress: Long): Any = try {
 	vm.pc = targetAddress
 } catch (_: Exception) {
-	errors.GeneralControlFlowException(message = "Jmp")
+	errors.generalControlFlowException(message = "Jmp")
 }

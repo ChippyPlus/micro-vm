@@ -4,7 +4,7 @@ import data.registers.RegisterData
 import data.registers.RegisterType
 import environment.reflection.reflection
 import internals.Vm
-import kernel.KProcess
+import kernel.process.KProcess
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json

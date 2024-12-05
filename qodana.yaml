@@ -1,31 +1,84 @@
-#-------------------------------------------------------------------------------#
-#               Qodana analysis is configured by qodana.yaml file               #
-#             https://www.jetbrains.com/help/qodana/qodana-yaml.html            #
-#-------------------------------------------------------------------------------#
+#file: noinspection ComposeMissingKeys
 version: "1.0"
-
-#Specify the inspection profile for code analysis
 profile:
   name: qodana.starter
-
-#Enable inspections
-#include:
-#  - name: <SomeEnabledInspectionId>
-
-#Disable inspections
-#exclude:
-#  - name: <SomeDisabledInspectionId>
-#    paths:
-#      - <path/where/not/run/inspection>
-
-projectJDK: "17" #(Applied in CI/CD pipeline)
-
-#Execute shell command before Qodana execution (Applied in CI/CD pipeline)
-#bootstrap: sh ./prepare-qodana.sh
-
-#Install IDE plugins before Qodana execution (Applied in CI/CD pipeline)
-#plugins:
-#  - id: <plugin.id> #(plugin id can be found at https://plugins.jetbrains.com)
-
-#Specify Qodana linter for analysis (Applied in CI/CD pipeline)
-linter: jetbrains/qodana-jvm:2024.3
+include:
+  - name: JvmLinesOfCodeInspection
+  - name: QodanaKotlinSanity
+  - name: ModuleWithTooFewClasses
+  - name: Annotator
+  - name: DuplicatedCode
+  - name: EmptyDirectory
+  - name: InconsistentLineSeparators
+  - name: InjectedReferences
+  #  - name: IncorrectFormatting
+  #  - name: LongLine
+  #  - name: ProblematicWhitespace
+  - name: ReassignedToPlainText
+  - name: RedundantSuppression
+  - name: TodoComment
+  - name: InfixCallToOrdinary
+  - name: RunBlocking
+  - name: RedundantNotNullExtensionReceiverOfInline
+  - name: ClassName
+  - name: ConstPropertyName
+  - name: EnumEntryName
+  - name: FunctionName
+  - name: InconsistentCommentForJavaParameter
+  - name: LocalVariableName
+  - name: ObjectPrivatePropertyName
+  - name: ObjectPropertyName
+  - name: PackageName
+  - name: PrivatePropertyName
+  - name: PropertyName
+  - name: TestFunctionName
+  - name: ConfigurationAvoidance
+  - name: BintrayPublishingPlugin
+  - name: JCenterRepository
+  - name: MultipleRepositoryUrls
+  - name: ForeignDelegate
+  - name: DependencyNotationArgument
+  - name: UnusedVersionCatalogEntry
+  - name: DeprecatedConfigurations
+  - name: IncorrectPluginDslStructure
+  - name: JsonSchemaCompliance
+  - name: JsonStandardCompliance
+  - name: Json5StandardCompliance
+  - name: JsonSchemaDeprecation
+  - name: MongoDBJsonDuplicatePropertyKeys
+  - name: JsonDuplicatePropertyKeys
+  - name: JsonSchemaRefReference
+  - name: KtorYamlConfig
+  - name: KtorOpenApi
+  - name: KtorOpenApiUpdate
+  - name: LanguageMismatch
+  - name: InjectionNotApplicable
+  - name: UnknownLanguage
+  - name: HttpUrlsUsage
+  - name: VulnerableLibrariesGlobal
+  - name: ShellCheck
+  - name: IgnoreFileDuplicateEntry
+  - name: SSBasedInspection
+  - name: CronExpressionValidationInspection
+  - name: DeclarativeUnresolvedReference
+  - name: HttpRequestPlaceholder
+  - name: HttpRequestEnvironmentAuthConfigurationValidationInspection
+  - name: HttpClientInappropriateProtocolUsageInspection
+  - name: IncorrectHttpHeaderInspection
+  - name: HttpRequestRequestSeparatorXmlBodyInspection
+  - name: HttpRequestRequestSeparatorJsonBodyInspection
+  - name: HttpRequestRequestSeparatorYamlBodyInspection
+  - name: HttpClientRunRequestNameInspection
+  - name: HttpRequestContentLengthIsIgnored
+  - name: HttpRequestCustomHttpMethodInspection
+  - name: HttpClientUnresolvedAuthId
+  - name: HttpClientUnresolvedVariable
+  - name: HttpRequestJsonBodyInspection
+  - name: HttpRequestWhitespaceInsideRequestTargetPath
+  - name: LossyEncoding
+  - name: NonAsciiCharacters
+  - name: TestCaseWithNoTestMethods
+  - name: TestInProductSource
+  - name: TestMethodWithoutAssertion
+  - name: TestOnlyProblems
+  - name: TestCaseWithConstructor

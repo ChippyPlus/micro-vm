@@ -44,7 +44,7 @@ open class Arithmetic(val vm: Vm) {
 			function()
 
 		} catch (e: Exception) {
-			vm.errors.GeneralArithmeticException(message = name)
+			vm.errors.generalArithmeticException(message = name)
 		}
 		signFlag(registers.read(RegisterType.R4))
 		zeroFlag(registers.read(RegisterType.R4))
