@@ -54,7 +54,7 @@ import kernel.process.KProcess
 class Execute(val kp: KProcess) {
 
 	init {
-		if (kp.file.name != "Non-existent") parser(kp, kp.file.readLines())
+		if (!kp.file.name.startsWith("\$lib")) parser(kp, kp.file.readLines())
 	}
 
 	suspend fun singleEvent(command: InstructData) {
@@ -95,7 +95,6 @@ class Execute(val kp: KProcess) {
 			} catch (_: IndexOutOfBoundsException) {
 				break
 			}
-
 			exeWhen(name, args)
 			vm.pc++
 		}

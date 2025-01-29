@@ -9,7 +9,6 @@ import kotlinx.coroutines.sync.withLock
 class TaskManagerV2 {
 	private val mutex = Mutex()
 	val keepPcs = mutableMapOf<KProcess, Pair<Pc, Execute>>()
-
 	suspend fun add(process: KProcess) {
 		mutex.withLock {
 			keepPcs[process] = Pair(process.vm.pcInternal, Execute(process))

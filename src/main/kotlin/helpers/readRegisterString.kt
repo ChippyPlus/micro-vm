@@ -1,6 +1,7 @@
 package helpers
 
 import data.registers.RegisterType
+import data.registers.read
 
 /**
  * Reads a null-terminated string from memory starting at the address stored in the specified register.
@@ -17,5 +18,6 @@ fun Helpers.readRegisterString(register: RegisterType): String {
 		string += byte.toInt().toChar()
 		index++
 	}
+//	println("[] $register = {${register.read(vm)}}  $string")
 	return string
 }

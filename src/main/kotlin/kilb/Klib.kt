@@ -4,6 +4,7 @@ import data.registers.RegisterType
 import helpers.readRegisterString
 import internals.Vm
 import kernel.process.KProcess
+import os
 
 class Klib(val kp: KProcess) {
 	val strings = Strings(kp)
@@ -18,6 +19,8 @@ class Klib(val kp: KProcess) {
 			"strings.strlen" -> strings.strlen()
 			"io.println" -> println(kp.vm.helpers.readRegisterString(RegisterType.F1))
 
+			// when context switch happens, F1 is set to 0. F registers need to hold state when switching!!!! Very
+			// important
 
 			"strings.cheekyfloat" -> cheekyFloat()
 			"strings.cheekydouble" -> cheekyDouble()
@@ -31,6 +34,7 @@ class Klib(val kp: KProcess) {
 			"strtoint" -> strtoint()
 			else -> return false
 		}
+		os.taskManager.keepPcs.remove(kp)
 		return true
 	}
 

@@ -10,7 +10,7 @@ import kernel.ExecuteLib
 import os
 import java.io.File
 
-data class KProcess(val vm: Vm, var file: File) {
+data class KProcess(val vm: Vm, var file: File, val isKlib: Boolean = false) {
 	val debug = Debug(this)
 	var runtimeState = RuntimeStates.RUNNING
 	val addressSpace = ProcessMemory(this)
@@ -24,7 +24,7 @@ data class KProcess(val vm: Vm, var file: File) {
 	}
 
 
-//	val registers = Registers(vm) // PLEASE COME BACK!
+	//	val registers = Registers(vm) // PLEASE COME BACK!
 
 
 	val ipcPermissions = mutableListOf<Int>()

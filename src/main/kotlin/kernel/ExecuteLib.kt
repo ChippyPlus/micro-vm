@@ -24,7 +24,11 @@ class ExecuteLib(val vm: Vm) {
 			kp.vm.pc = OldPc // No way this was the fix
 			enabledFunction = false
 		} else {
+			enabledFunction = true
+			val OldPc = kp.vm.pc
 			executeKt(name)
+			kp.vm.pc = OldPc
+			enabledFunction = false
 		}
 	}
 }

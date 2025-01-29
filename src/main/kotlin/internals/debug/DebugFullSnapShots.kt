@@ -19,6 +19,7 @@ class DebugFullSnapShots {
 
 	init {
 		File(where).deleteRecursively()
+//		println("Deleted $where")
 		File(where).mkdir()
 	}
 

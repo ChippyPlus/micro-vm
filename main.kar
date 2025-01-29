@@ -1,4 +1,5 @@
-lit s1 35
-lit s2 0
+str s2 "I love men? !>"
+lit s1 24
 syscall
-printr r2
+str f1 "kys"
+call io.println

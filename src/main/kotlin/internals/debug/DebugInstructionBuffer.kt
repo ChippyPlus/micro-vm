@@ -17,6 +17,8 @@ class DebugInstructionBuffer {
 
 	init {
 		File(where).deleteRecursively()
+//		println("Deleted $where")
+
 		File(where).mkdir()
 	}
 
