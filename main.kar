@@ -1,5 +1,6 @@
 str s2 "I love men? !>"
 lit s1 24
-syscall
 str f1 "kys"
+printr s1
 call io.println
+printr s1
