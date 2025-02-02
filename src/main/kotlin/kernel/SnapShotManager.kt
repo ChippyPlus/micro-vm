@@ -4,7 +4,7 @@ import data.registers.RegisterType
 import data.registers.Registers
 import internals.Vm
 import kernel.process.KProcess
-
+//@Depre
 class SnapShotManager(private val registers: Registers) {
 
 	private val snapshots = mutableMapOf<KProcess, Map<RegisterType, Long>>()
@@ -16,9 +16,9 @@ class SnapShotManager(private val registers: Registers) {
 
 	}
 
-	fun snapShotRegisters(kProcess: KProcess) {
+	fun snapShotRegisters(kProcess: KProcess) { //TODO NOT WORKING!!!
 		val allRegisters = mutableMapOf<RegisterType, Long>()
-		for (i in RegisterType.entries) {
+		for (i in RegisterType.entries) { // NOT WORKING!
 			allRegisters[i] = registers.read(i)
 		}
 		snapshots[kProcess] = allRegisters //		println("${kProcess.file.name}:${kProcess.vm.pc} -> [SNAPSHOT]")

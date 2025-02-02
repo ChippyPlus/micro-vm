@@ -49,6 +49,7 @@ import internals.instructions.xFloats.xMul
 import internals.instructions.xFloats.xPow
 import internals.instructions.xFloats.xSub
 import kernel.process.KProcess
+import os
 
 
 class Execute(val kp: KProcess) {
@@ -62,9 +63,11 @@ class Execute(val kp: KProcess) {
 			kp.vm.errors.invalidPcValueException((kp.vm.pc).toString())
 		}
 
+		os.snapShotManager.populateSnapShotRegister(kp) // Broken???
 
 		exeWhen(command.name, command.values)
 
+		os.snapShotManager.snapShotRegisters(kp) // Also broken????
 		kp.vm.pc++
 
 	}
@@ -112,8 +115,7 @@ class Execute(val kp: KProcess) {
 	suspend fun exeWhen(name: String, args: Array<Any?>): Unit? { // This has to be suspended. I know it's terrible!
 		val vm = kp.vm
 		kp.currentInstruction = InstructData(name, args)
-
-		kp.debug.act()
+//		kp.debug.act()
 
 
 		when (name) {

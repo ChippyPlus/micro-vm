@@ -25,6 +25,8 @@ fun main(args: Array<String>): Unit = runBlocking(newSingleThreadContext("Kotlin
 		println("Usage: mvm <command> [options]")
 		exitProcess(1)
 	}
+
+
 	when (args[0]) {
 		"irun" -> {
 			if (args.size < 2) {
@@ -50,8 +52,9 @@ fun main(args: Array<String>): Unit = runBlocking(newSingleThreadContext("Kotlin
 				println("Usage: mvm tokenise <file.kar>")
 				exitProcess(1)
 			}
-			println("Deprecated!")
-//			VarRedundancy(globalInfo = parser(init, File(args[1]).readLines())).cleanRedundancy().forEach(::println)
+			println(
+				"Deprecated!"
+			) //			VarRedundancy(globalInfo = parser(init, File(args[1]).readLines())).cleanRedundancy().forEach(::println)
 		}
 
 
